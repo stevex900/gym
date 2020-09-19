@@ -1,12 +1,20 @@
 import React from "react";
-import { MenuContainer, Button } from "./menu.styles";
+import { MenuContainer, ButtonContainer } from "./menu.styles";
+import { Button } from "../button/Button.styles";
 const Menu = () => {
+  const buttons = [
+    { id: 1, name: "First" },
+    { id: 2, name: "Second" },
+    { id: 3, name: "Third" },
+    { id: 4, name: "Fourth" },
+  ];
   return (
     <MenuContainer>
-      <Button>Button 1</Button>
-      <Button>Button 2</Button>
-      <Button>Button 3</Button>
-      <Button>Button 4</Button>
+      <ButtonContainer>
+        {buttons.map((button) => (
+          <Button key={button.id}>{button.name}</Button>
+        ))}
+      </ButtonContainer>
     </MenuContainer>
   );
 };

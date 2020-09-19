@@ -2,18 +2,26 @@ import React from "react";
 import { connect } from "react-redux";
 import { selectStopwatchItem } from "../../redux/stopwatch/stopwatch.selectors";
 import { ReactComponent as StopwatchIcon } from "../../assets/stopwatch.svg";
-import { Container } from "./stopwatch.styles";
+import { Container, Container2 } from "./stopwatch.styles";
 import { showStopwatchChangeAction } from "../../redux/stopwatch/stopwatch.actions";
 import StopwatchWindow from "../stopwatch-window/StopwatchWindow";
-const Stopwatch = ({ stopwatchActive, showStopwatchChangeAction }) => {
+import { showMenuChangeAction } from "../../redux/navigation/navigation.actions";
+const Stopwatch = ({
+  stopwatchActive,
+  showStopwatchChangeAction,
+  showMenuChangeAction,
+}) => {
   const handleShowStopwatch = () => {
     showStopwatchChangeAction(!stopwatchActive);
+    showMenuChangeAction(false);
   };
   return (
-    <Container>
-      <StopwatchIcon onClick={handleShowStopwatch} />
+    <Container2>
+      <Container>
+        <StopwatchIcon onClick={handleShowStopwatch} />
+      </Container>
       {stopwatchActive && <StopwatchWindow />}
-    </Container>
+    </Container2>
   );
 };
 const mapStateToProps = (state) => ({
@@ -22,5 +30,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   showStopwatchChangeAction: (item) =>
     dispatch(showStopwatchChangeAction(item)),
+  showMenuChangeAction: (item) => dispatch(showMenuChangeAction(item)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Stopwatch);
