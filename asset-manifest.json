@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/gym/static/css/main.457a00d2.chunk.css",
-    "main.js": "/gym/static/js/main.dbf3b1fa.chunk.js",
-    "main.js.map": "/gym/static/js/main.dbf3b1fa.chunk.js.map",
+    "main.js": "/gym/static/js/main.cf296aae.chunk.js",
+    "main.js.map": "/gym/static/js/main.cf296aae.chunk.js.map",
     "runtime-main.js": "/gym/static/js/runtime-main.fdf1fd59.js",
     "runtime-main.js.map": "/gym/static/js/runtime-main.fdf1fd59.js.map",
     "static/js/2.a8067ad8.chunk.js": "/gym/static/js/2.a8067ad8.chunk.js",
     "static/js/2.a8067ad8.chunk.js.map": "/gym/static/js/2.a8067ad8.chunk.js.map",
     "index.html": "/gym/index.html",
-    "precache-manifest.770eae9fe7d9dd10924eba5587e31dc5.js": "/gym/precache-manifest.770eae9fe7d9dd10924eba5587e31dc5.js",
+    "precache-manifest.ee1d9fb6148834c52b7013ef9b0dedd6.js": "/gym/precache-manifest.ee1d9fb6148834c52b7013ef9b0dedd6.js",
     "service-worker.js": "/gym/service-worker.js",
     "static/css/main.457a00d2.chunk.css.map": "/gym/static/css/main.457a00d2.chunk.css.map",
     "static/js/2.a8067ad8.chunk.js.LICENSE.txt": "/gym/static/js/2.a8067ad8.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.fdf1fd59.js",
     "static/js/2.a8067ad8.chunk.js",
     "static/css/main.457a00d2.chunk.css",
-    "static/js/main.dbf3b1fa.chunk.js"
+    "static/js/main.cf296aae.chunk.js"
   ]
 }
