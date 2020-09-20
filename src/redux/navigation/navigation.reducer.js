@@ -1,6 +1,6 @@
 import { ActionTypes } from "./navigation.types";
 const INITIAL_STATE = {
-  showMenu: false,
+  showMenu: true,
 };
 
 export const menuReducer = (state = INITIAL_STATE, action) => {

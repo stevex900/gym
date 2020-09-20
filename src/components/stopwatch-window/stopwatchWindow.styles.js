@@ -5,8 +5,8 @@ export const MainContainer = styled.div`
   min-width: 100vw;
   position: absolute;
   left: 0;
-  z-index: -2;
-  /* background-color: red; */
+  z-index: -1;
+  background-color: white;
 `;
 
 export const PrimaryContainer = styled.div`

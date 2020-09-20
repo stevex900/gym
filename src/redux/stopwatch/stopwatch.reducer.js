@@ -1,6 +1,6 @@
 import { ActionTypes } from "./stopwatch.types";
 const INITIAL_STATE = {
-  stopwatchActive: true,
+  stopwatchActive: false,
   seriesMinutes: 0,
   workoutMinutes: 1,
   restMinutes: 3,
