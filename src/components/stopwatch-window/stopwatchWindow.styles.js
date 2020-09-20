@@ -47,8 +47,8 @@ export const Button = styled.button`
 
   min-height: 40px;
   min-width: 40px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 40px;
+  margin-right: 40px;
 `;
 export const Span = styled.span`
   font-size: 30px;

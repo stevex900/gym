@@ -6,13 +6,26 @@ export const selectStopwatchItem = createSelector(
 );
 export const selectStopwatchSeries = createSelector(
   [selectStopwatch],
-  (stopwatch) => stopwatch.series
+  (stopwatch) => stopwatch.seriesSeconds
 );
 export const selectStopwatchWorkout = createSelector(
   [selectStopwatch],
-  (stopwatch) => stopwatch.workout
+  (stopwatch) => stopwatch.workoutSeconds
 );
 export const selectStopwatchRest = createSelector(
   [selectStopwatch],
-  (stopwatch) => stopwatch.rest
+  (stopwatch) => stopwatch.restSeconds
+);
+
+export const selectStopwatchSeriesMinutes = createSelector(
+  [selectStopwatch],
+  (stopwatch) => stopwatch.seriesMinutes
+);
+export const selectStopwatchWorkoutMinutes = createSelector(
+  [selectStopwatch],
+  (stopwatch) => stopwatch.workoutMinutes
+);
+export const selectStopwatchRestMinutes = createSelector(
+  [selectStopwatch],
+  (stopwatch) => stopwatch.restMinutes
 );

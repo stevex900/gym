@@ -4,11 +4,17 @@ import {
   selectStopwatchSeries,
   selectStopwatchWorkout,
   selectStopwatchRest,
+  selectStopwatchSeriesMinutes,
+  selectStopwatchWorkoutMinutes,
+  selectStopwatchRestMinutes,
 } from "../../redux/stopwatch/stopwatch.selectors";
 import {
   seriesChangeValueAction,
   workoutChangeValueAction,
   restChangeValueAction,
+  seriesChangeValueActionMinutes,
+  workoutChangeValueActionMinutes,
+  restChangeValueActionMinutes,
 } from "../../redux/stopwatch/stopwatch.actions";
 import {
   MainContainer,
@@ -21,31 +27,59 @@ import {
   Span,
 } from "./stopwatchWindow.styles";
 const StopwatchWindow = ({
-  series,
-  workout,
-  rest,
+  seriesSeconds,
+  workoutSeconds,
+  restSeconds,
+  seriesMinutes,
+  workoutMinutes,
+  restMinutes,
   seriesChangeValueAction,
   restChangeValueAction,
   workoutChangeValueAction,
+  seriesChangeValueActionMinutes,
+  workoutChangeValueActionMinutes,
+  restChangeValueActionMinutes,
 }) => {
   const handleSerieschange = (bindValue) => {
     if (bindValue === "substract") {
-      seriesChangeValueAction(--series);
+      seriesChangeValueAction(--seriesSeconds);
     } else if (bindValue === "add") {
-      seriesChangeValueAction(++series);
+      seriesChangeValueAction(++seriesSeconds);
     }
   };
+
   const handleWorkoutOrRestChange = (bindValue) => {
     if (bindValue === "workout-substract") {
-      workoutChangeValueAction(--workout);
+      if (workoutSeconds > 0) {
+        workoutChangeValueAction(--workoutSeconds);
+      } else if (workoutSeconds === 0) {
+        workoutChangeValueActionMinutes(--workoutMinutes);
+        workoutChangeValueAction((workoutSeconds = 59));
+      }
     } else if (bindValue === "workout-add") {
-      workoutChangeValueAction(++workout);
+      if (workoutSeconds < 59) {
+        workoutChangeValueAction(++workoutSeconds);
+      } else if (workoutSeconds >= 59) {
+        workoutChangeValueAction((workoutSeconds = 0));
+        workoutChangeValueActionMinutes(++workoutMinutes);
+      }
     } else if (bindValue === "rest-substract") {
-      restChangeValueAction(--rest);
+      if (restSeconds > 0) {
+        restChangeValueAction(--restSeconds);
+      } else if (restSeconds === 0) {
+        restChangeValueActionMinutes(--restMinutes);
+        restChangeValueAction((restSeconds = 59));
+      }
     } else if (bindValue === "rest-add") {
-      restChangeValueAction(++rest);
+      if (restSeconds < 59) {
+        restChangeValueAction(++restSeconds);
+      } else if (restSeconds >= 59) {
+        restChangeValueAction((restSeconds = 0));
+        restChangeValueActionMinutes(++restMinutes);
+      }
     }
   };
+
   return (
     <MainContainer>
       <PrimaryContainer>
@@ -57,7 +91,7 @@ const StopwatchWindow = ({
                 -
               </Button>
             </QuaternaryContainer>
-            <Span> {series} </Span>
+            <Span> {seriesSeconds} </Span>
             <QuaternaryContainer>
               <Button onClick={handleSerieschange.bind(this, "add")}>
                 {" "}
@@ -79,7 +113,12 @@ const StopwatchWindow = ({
                 -
               </Button>
             </QuaternaryContainer>
-            <Span> {workout} </Span>
+            <Span>
+              {" "}
+              {`${workoutMinutes < 10 ? "0" + workoutMinutes : workoutMinutes}`}
+              :
+              {`${workoutSeconds < 10 ? "0" + workoutSeconds : workoutSeconds}`}
+            </Span>
             <QuaternaryContainer>
               <Button
                 onClick={handleWorkoutOrRestChange.bind(this, "workout-add")}
@@ -99,7 +138,11 @@ const StopwatchWindow = ({
                 -
               </Button>
             </QuaternaryContainer>
-            <Span> {rest} </Span>
+            <Span>
+              {" "}
+              {`${restMinutes < 10 ? "0" + restMinutes : restMinutes}`}:
+              {`${restSeconds < 10 ? "0" + restSeconds : restSeconds}`}
+            </Span>
             <QuaternaryContainer>
               <Button
                 onClick={handleWorkoutOrRestChange.bind(this, "rest-add")}
@@ -114,13 +157,24 @@ const StopwatchWindow = ({
   );
 };
 const mapStateToProps = (state) => ({
-  series: selectStopwatchSeries(state),
-  workout: selectStopwatchWorkout(state),
-  rest: selectStopwatchRest(state),
+  seriesSeconds: selectStopwatchSeries(state),
+  workoutSeconds: selectStopwatchWorkout(state),
+  restSeconds: selectStopwatchRest(state),
+
+  seriesMinutes: selectStopwatchSeriesMinutes(state),
+  workoutMinutes: selectStopwatchWorkoutMinutes(state),
+  restMinutes: selectStopwatchRestMinutes(state),
 });
 const mapDispatchToProps = (dispatch) => ({
   seriesChangeValueAction: (item) => dispatch(seriesChangeValueAction(item)),
   restChangeValueAction: (item) => dispatch(restChangeValueAction(item)),
   workoutChangeValueAction: (item) => dispatch(workoutChangeValueAction(item)),
+
+  seriesChangeValueActionMinutes: (item) =>
+    dispatch(seriesChangeValueActionMinutes(item)),
+  workoutChangeValueActionMinutes: (item) =>
+    dispatch(workoutChangeValueActionMinutes(item)),
+  restChangeValueActionMinutes: (item) =>
+    dispatch(restChangeValueActionMinutes(item)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(StopwatchWindow);

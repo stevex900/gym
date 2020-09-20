@@ -3,9 +3,9 @@ import { MenuContainer, ButtonContainer } from "./menu.styles";
 import { Button } from "../button/Button.styles";
 const Menu = () => {
   const buttons = [
-    { id: 1, name: "First" },
-    { id: 2, name: "Second" },
-    { id: 3, name: "Third" },
+    { id: 1, name: "Arrange Training" },
+    { id: 2, name: "History" },
+    { id: 3, name: "View Training" },
     { id: 4, name: "Fourth" },
   ];
   return (
