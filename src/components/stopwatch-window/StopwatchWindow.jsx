@@ -79,6 +79,21 @@ const StopwatchWindow = ({
       }
     }
   };
+  const stopwatchStartStop = () => {
+    console.log("interwal wystartowal");
+
+    if (workoutSeconds > 0) {
+      workoutChangeValueAction(--workoutSeconds);
+    } else if (workoutSeconds === 0) {
+      workoutChangeValueActionMinutes(--workoutMinutes);
+      workoutChangeValueAction((workoutSeconds = 59));
+    }
+  };
+  const stopWatchInterval = () => setInterval(stopwatchStartStop, 1000);
+
+  const handleStopWatchStart = () => {
+    stopWatchInterval();
+  };
 
   return (
     <MainContainer>
@@ -152,6 +167,7 @@ const StopwatchWindow = ({
             </QuaternaryContainer>
           </TertiaryContainer>
         </SecondaryContainer>
+        <Button onClick={handleStopWatchStart}>Start</Button>
       </PrimaryContainer>
     </MainContainer>
   );

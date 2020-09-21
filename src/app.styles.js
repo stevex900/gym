@@ -11,7 +11,6 @@ export const PrimaryContainer = styled.div`
   min-width: 100vw;
 `;
 export const SecondaryContainer = styled.div`
-  z-index: -3;
-  background-color: gray;
-  margin-top: 200px;
+  /* background-color: gray; */
+  margin-top: 80px;
 `;

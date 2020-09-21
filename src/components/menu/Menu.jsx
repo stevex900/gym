@@ -10,9 +10,9 @@ import { connect } from "react-redux";
 import { showMenuChangeAction } from "../../redux/navigation/navigation.actions";
 const Menu = ({ showMenuChangeAction }) => {
   const buttons = [
-    { id: 1, name: "Arrange Training", path: "arrangetraining" },
-    { id: 2, name: "History", path: "history" },
-    { id: 3, name: "View Training", path: "viewtraining" },
+    { id: 1, name: "Arrange Training", path: "/arrangetraining" },
+    { id: 2, name: "History", path: "/history" },
+    { id: 3, name: "View Training", path: "/viewtraining" },
     { id: 4, name: "Start", path: "/", exact: true },
   ];
   const handleShowMenu = () => {

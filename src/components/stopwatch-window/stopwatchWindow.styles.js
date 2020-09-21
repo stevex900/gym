@@ -14,7 +14,7 @@ export const PrimaryContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  margin-top: 90px;
+  margin-top: 50px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
