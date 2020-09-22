@@ -34,7 +34,7 @@ export const ButtonContainer = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 50px;
+  /* bottom: 50px; */
   display: flex;
 `;
 export const Button = styled.button`

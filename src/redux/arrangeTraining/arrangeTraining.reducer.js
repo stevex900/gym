@@ -7,12 +7,14 @@ const INITIAL_STATE = {
       exerciseName: "Przysiad",
       repetitions: "12",
       weight: "100",
+      series: 3,
     },
     {
       id: 2,
       exerciseName: "Martwy Ciąg",
       repetitions: "10",
       weight: "120",
+      series: 4,
     },
   ],
 };
