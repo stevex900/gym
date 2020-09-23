@@ -15,9 +15,11 @@ export const TertiaryContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
+export const InputContainer = styled.div``;
 export const QuinaryContainer = styled.div`
   margin-left: 7px;
 `;
+
 export const Form = styled.form``;
 export const Input = styled.input`
   background-color: #e9e9e9;

@@ -2,20 +2,24 @@ import { ActionTypes } from "./arrangeTraining.types";
 const INITIAL_STATE = {
   number: 8,
   currentWorkout: [
-    {
-      id: 1,
-      exerciseName: "Przysiad",
-      repetitions: "12",
-      weight: "100",
-      series: 3,
-    },
-    {
-      id: 2,
-      exerciseName: "Martwy Ciąg",
-      repetitions: "10",
-      weight: "120",
-      series: 4,
-    },
+    // {
+    //   id: 1,
+    //   exerciseName: "Przysiad",
+    //   repetitions: "12",
+    //   weight: "100",
+    // },
+    // {
+    //   id: 2,
+    //   exerciseName: "Przysiad",
+    //   repetitions: "10",
+    //   weight: "110",
+    // },
+    // {
+    //   id: 3,
+    //   exerciseName: "Przysiad",
+    //   repetitions: "8",
+    //   weight: "140",
+    // },
   ],
 };
 

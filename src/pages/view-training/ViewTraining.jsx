@@ -42,7 +42,7 @@ const ViewTraining = ({ viewCurrentWorkout }) => {
           <P></P>
         </SecondaryContainer>
       </QuinaryContainer>
-      <QuinaryContainer>
+      {/* <QuinaryContainer>
         {`${workout.series && workout.series + "x"}`}
         <Input
           onChange={handleInputChange.bind(this, "weight")}
@@ -53,7 +53,7 @@ const ViewTraining = ({ viewCurrentWorkout }) => {
         <SecondaryContainer>
           <P></P>
         </SecondaryContainer>
-      </QuinaryContainer>
+      </QuinaryContainer> */}
       <QuinaryContainer>
         {`${workout.weight && workout.weight + "kg"}`}
         <Input

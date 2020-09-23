@@ -7,7 +7,7 @@ export const SecondaryContainer = styled.div``;
 export const TertiaryContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
   border-bottom: 1px solid lightgrey;
 `;
 export const QuinaryContainer = styled.div`
@@ -52,7 +52,7 @@ export const Input = styled.input`
   background-color: #e9e9e9;
   height: 25px;
   width: 54px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   border: none;
   &:focus {
     outline: none;
