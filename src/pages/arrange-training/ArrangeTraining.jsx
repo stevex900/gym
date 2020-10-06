@@ -15,6 +15,7 @@ import {
   SecondaryContainer,
   TertiaryContainer,
   QuinaryContainer,
+  ExerciseName,
   Form,
   Input,
   Textarea,
@@ -66,43 +67,81 @@ const ArrangeTraining = ({
   };
   const handleSetExercise = (e) => {
     e.preventDefault();
-    const firstSeries = {
+    const oneSeries = {
       id: number + 1,
       exerciseName: inputExerciseName,
-      repetitions: inputRepetitions1,
-      weight: inputWeight1,
+      exercise: [
+        {
+          series: 1,
+          repetitions: inputRepetitions1,
+          weight: inputWeight1,
+        },
+      ],
     };
-    const secondSeries = {
-      id: number + 2,
+    const twoSeries = {
+      id: number + 1,
       exerciseName: inputExerciseName,
-      repetitions: inputRepetitions2,
-      weight: inputWeight2,
+      exercise: [
+        {
+          series: 1,
+          repetitions: inputRepetitions1,
+          weight: inputWeight1,
+        },
+        {
+          series: 2,
+          repetitions: inputRepetitions2,
+          weight: inputWeight2,
+        },
+      ],
     };
-    const thirdSeries = {
-      id: number + 3,
+    const threeSeries = {
+      id: number + 1,
       exerciseName: inputExerciseName,
-      repetitions: inputRepetitions3,
-      weight: inputWeight3,
+      exercise: [
+        {
+          series: 1,
+          repetitions: inputRepetitions1,
+          weight: inputWeight1,
+        },
+        {
+          series: 2,
+          repetitions: inputRepetitions2,
+          weight: inputWeight2,
+        },
+        {
+          series: 3,
+          repetitions: inputRepetitions3,
+          weight: inputWeight3,
+        },
+      ],
     };
-    const fourthSeries = {
-      id: number + 4,
+    const fourSeries = {
+      id: number + 1,
       exerciseName: inputExerciseName,
-      repetitions: inputRepetitions4,
-      weight: inputWeight4,
+      exercise: [
+        {
+          series: 1,
+          repetitions: inputRepetitions1,
+          weight: inputWeight1,
+        },
+        {
+          series: 2,
+          repetitions: inputRepetitions2,
+          weight: inputWeight2,
+        },
+        {
+          series: 3,
+          repetitions: inputRepetitions3,
+          weight: inputWeight3,
+        },
+        {
+          series: 4,
+          repetitions: inputRepetitions4,
+          weight: inputWeight4,
+        },
+      ],
     };
-    if (firstSeries.repetitions || firstSeries.weight) {
-      setExerciseAction(firstSeries);
-    }
-    if (secondSeries.repetitions || secondSeries.weight) {
-      setExerciseAction(secondSeries);
-    }
-    if (thirdSeries.repetitions || thirdSeries.weight) {
-      setExerciseAction(thirdSeries);
-    }
-    if (fourthSeries.repetitions || fourthSeries.weight) {
-      setExerciseAction(fourthSeries);
-    }
-    numberChange(number + 4);
+    numberChange(number + 1);
     setInputExerciseName("");
     setInputSeries("");
     setInputRepetitions1("");
@@ -113,20 +152,31 @@ const ArrangeTraining = ({
     setInputWeight3("");
     setInputRepetitions4("");
     setInputWeight4("");
+    if (fourSeries.exercise[3].repetitions || fourSeries.exercise[3].weight) {
+      return setExerciseAction(fourSeries);
+    }
+    if (threeSeries.exercise[2].repetitions || threeSeries.exercise[2].weight) {
+      return setExerciseAction(threeSeries);
+    }
+    if (twoSeries.exercise[1].repetitions || twoSeries.exercise[1].weight) {
+      return setExerciseAction(twoSeries);
+    }
+    if (oneSeries.exercise[0].repetitions || oneSeries.exercise[0].weight) {
+      setExerciseAction(oneSeries);
+    }
+
+    // setExerciseAction(fourSeries);
   };
   const currentWorkouts = [...currentWorkout];
   const currentWorkoutsList = currentWorkouts.map((workout) => (
     <TertiaryContainer key={workout.id}>
-      <QuinaryContainer>{workout.exerciseName}</QuinaryContainer>
-      <QuinaryContainer>
-        {`${workout.repetitions && workout.repetitions + "x"}`}
-      </QuinaryContainer>
-      {/* <QuinaryContainer>{`${
-        workout.series && workout.series + "x"
-      }`}</QuinaryContainer> */}
-      <QuinaryContainer>{`${
-        workout.weight && workout.weight + "kg"
-      }`}</QuinaryContainer>
+      {workout.exerciseName}
+      {workout.exercise.map((item) => (
+        <QuinaryContainer key={item.series}>
+          {`${item.repetitions && item.repetitions + "x"}`}
+          {`${item.weight && item.weight + "kg"}`}
+        </QuinaryContainer>
+      ))}
     </TertiaryContainer>
   ));
   const handleSetTraining = () => {

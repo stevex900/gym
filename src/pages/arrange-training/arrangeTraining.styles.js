@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+export const ExerciseName = styled.div``;
 export const MainContainer = styled.div`
   /* background-color: red; */
 `;
