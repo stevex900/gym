@@ -20,6 +20,24 @@ const INITIAL_STATE = {
     //   repetitions: "8",
     //   weight: "140",
     // },
+    // ==============================
+    // {
+    //   id: 1,
+    //   exercise: [
+    //     {
+    //       series: 1,
+    //       name: "Klata",
+    //       repetitions: 11,
+    //       weight: 150,
+    //     },
+    //     {
+    //       series: 2,
+    //       name: "Klata",
+    //       repetitions: 14,
+    //       weight: 120,
+    //     },
+    //   ],
+    // },
   ],
 };
 

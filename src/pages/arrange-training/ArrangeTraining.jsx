@@ -67,7 +67,6 @@ const ArrangeTraining = ({
   const handleSetExercise = (e) => {
     e.preventDefault();
     const firstSeries = {
-      //   series: inputSeries,
       id: number + 1,
       exerciseName: inputExerciseName,
       repetitions: inputRepetitions1,
