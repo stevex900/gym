@@ -29,43 +29,36 @@ const ViewTraining = ({ viewCurrentWorkout }) => {
   const viewCurrentWorkouts = [...viewCurrentWorkout];
   const viewCurrentWorkoutsList = viewCurrentWorkouts.map((workout) => (
     <TertiaryContainer key={workout.id}>
-      <QuinaryContainer>{workout.exerciseName}</QuinaryContainer>
-      <QuinaryContainer>
-        {`${workout.repetitions && workout.repetitions + "x"}`}
-        <Input
-          onChange={handleInputChange.bind(this, "repetitions")}
-          type="number"
-          placeholder="My Score"
-        />
-        <SmallButton>Confirm</SmallButton>
-        <SecondaryContainer>
-          <P></P>
-        </SecondaryContainer>
-      </QuinaryContainer>
-      {/* <QuinaryContainer>
-        {`${workout.series && workout.series + "x"}`}
-        <Input
-          onChange={handleInputChange.bind(this, "weight")}
-          type="number"
-          placeholder="My Score"
-        />
-        <SmallButton>Confirm</SmallButton>
-        <SecondaryContainer>
-          <P></P>
-        </SecondaryContainer>
-      </QuinaryContainer> */}
-      <QuinaryContainer>
-        {`${workout.weight && workout.weight + "kg"}`}
-        <Input
-          onChange={handleInputChange.bind(this, "series")}
-          type="number"
-          placeholder="My Score"
-        />
-        <SmallButton>Confirm</SmallButton>
-        <SecondaryContainer>
-          <P></P>
-        </SecondaryContainer>
-      </QuinaryContainer>
+      {workout.exerciseName}
+      {workout.exercise.map((item) => (
+        <TertiaryContainer key={item.series}>
+          {" "}
+          <QuinaryContainer>
+            {`${item.repetitions && item.repetitions + "x"}`}
+            <Input
+              onChange={handleInputChange.bind(this, "repetitions")}
+              type="number"
+              placeholder="My Score"
+            />
+            <SmallButton>Confirm</SmallButton>
+            <SecondaryContainer>
+              <P></P>
+            </SecondaryContainer>
+          </QuinaryContainer>
+          <QuinaryContainer>
+            {`${item.weight && item.weight + "kg"}`}
+            <Input
+              onChange={handleInputChange.bind(this, "series")}
+              type="number"
+              placeholder="My Score"
+            />
+            <SmallButton>Confirm</SmallButton>
+            <SecondaryContainer>
+              <P></P>
+            </SecondaryContainer>
+          </QuinaryContainer>
+        </TertiaryContainer>
+      ))}
     </TertiaryContainer>
   ));
   return (
