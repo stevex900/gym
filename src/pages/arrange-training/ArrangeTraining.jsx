@@ -12,13 +12,19 @@ import {
 import {
   MainContainer,
   PrimaryContainer,
+  Top,
   SecondaryContainer,
-  TertiaryContainer,
+  Container,
+  WorkoutContainer,
+  ExerciseData,
   QuinaryContainer,
+  ExerciseName,
   Form,
   Input,
   Textarea,
   InputContainer,
+  ExerciseDataItemContainer,
+  ExerciseDataItem,
   P,
   Button,
   ButtonContainer,
@@ -66,44 +72,81 @@ const ArrangeTraining = ({
   };
   const handleSetExercise = (e) => {
     e.preventDefault();
-    const firstSeries = {
-      //   series: inputSeries,
+    const oneSeries = {
       id: number + 1,
       exerciseName: inputExerciseName,
-      repetitions: inputRepetitions1,
-      weight: inputWeight1,
+      exercise: [
+        {
+          series: 1,
+          repetitions: inputRepetitions1,
+          weight: inputWeight1,
+        },
+      ],
     };
-    const secondSeries = {
-      id: number + 2,
+    const twoSeries = {
+      id: number + 1,
       exerciseName: inputExerciseName,
-      repetitions: inputRepetitions2,
-      weight: inputWeight2,
+      exercise: [
+        {
+          series: 1,
+          repetitions: inputRepetitions1,
+          weight: inputWeight1,
+        },
+        {
+          series: 2,
+          repetitions: inputRepetitions2,
+          weight: inputWeight2,
+        },
+      ],
     };
-    const thirdSeries = {
-      id: number + 3,
+    const threeSeries = {
+      id: number + 1,
       exerciseName: inputExerciseName,
-      repetitions: inputRepetitions3,
-      weight: inputWeight3,
+      exercise: [
+        {
+          series: 1,
+          repetitions: inputRepetitions1,
+          weight: inputWeight1,
+        },
+        {
+          series: 2,
+          repetitions: inputRepetitions2,
+          weight: inputWeight2,
+        },
+        {
+          series: 3,
+          repetitions: inputRepetitions3,
+          weight: inputWeight3,
+        },
+      ],
     };
-    const fourthSeries = {
-      id: number + 4,
+    const fourSeries = {
+      id: number + 1,
       exerciseName: inputExerciseName,
-      repetitions: inputRepetitions4,
-      weight: inputWeight4,
+      exercise: [
+        {
+          series: 1,
+          repetitions: inputRepetitions1,
+          weight: inputWeight1,
+        },
+        {
+          series: 2,
+          repetitions: inputRepetitions2,
+          weight: inputWeight2,
+        },
+        {
+          series: 3,
+          repetitions: inputRepetitions3,
+          weight: inputWeight3,
+        },
+        {
+          series: 4,
+          repetitions: inputRepetitions4,
+          weight: inputWeight4,
+        },
+      ],
     };
-    if (firstSeries.repetitions || firstSeries.weight) {
-      setExerciseAction(firstSeries);
-    }
-    if (secondSeries.repetitions || secondSeries.weight) {
-      setExerciseAction(secondSeries);
-    }
-    if (thirdSeries.repetitions || thirdSeries.weight) {
-      setExerciseAction(thirdSeries);
-    }
-    if (fourthSeries.repetitions || fourthSeries.weight) {
-      setExerciseAction(fourthSeries);
-    }
-    numberChange(number + 4);
+    numberChange(number + 1);
     setInputExerciseName("");
     setInputSeries("");
     setInputRepetitions1("");
@@ -114,21 +157,41 @@ const ArrangeTraining = ({
     setInputWeight3("");
     setInputRepetitions4("");
     setInputWeight4("");
+    if (inputExerciseName) {
+      if (inputSeries === "1") {
+        setExerciseAction(oneSeries);
+      } else if (inputSeries === "2") {
+        setExerciseAction(twoSeries);
+      } else if (inputSeries === "3") {
+        setExerciseAction(threeSeries);
+      } else if (inputSeries === "4") {
+        setExerciseAction(fourSeries);
+      } else {
+        alert("Select amount of series");
+      }
+    } else {
+      alert("Enter a name for the exercise");
+    }
   };
   const currentWorkouts = [...currentWorkout];
   const currentWorkoutsList = currentWorkouts.map((workout) => (
-    <TertiaryContainer key={workout.id}>
-      <QuinaryContainer>{workout.exerciseName}</QuinaryContainer>
-      <QuinaryContainer>
-        {`${workout.repetitions && workout.repetitions + "x"}`}
-      </QuinaryContainer>
-      {/* <QuinaryContainer>{`${
-        workout.series && workout.series + "x"
-      }`}</QuinaryContainer> */}
-      <QuinaryContainer>{`${
-        workout.weight && workout.weight + "kg"
-      }`}</QuinaryContainer>
-    </TertiaryContainer>
+    <WorkoutContainer key={workout.id}>
+      <ExerciseName> {workout.exerciseName}</ExerciseName>
+      <ExerciseData>
+        {workout.exercise.map((item) => (
+          <ExerciseDataItemContainer key={item.series}>
+            <ExerciseDataItem>{`${
+              item.repetitions && item.repetitions + "x"
+            }`}</ExerciseDataItem>
+            <ExerciseDataItem>
+              {" "}
+              {`${item.weight && item.weight + "kg"}`}
+            </ExerciseDataItem>
+          </ExerciseDataItemContainer>
+        ))}
+      </ExerciseData>
+      <Button>Remove</Button>
+    </WorkoutContainer>
   ));
   const handleSetTraining = () => {
     setTrainingAction(currentWorkouts);
@@ -136,100 +199,106 @@ const ArrangeTraining = ({
   };
   return (
     <MainContainer>
-      <SecondaryContainer>{currentWorkoutsList}</SecondaryContainer>
-      <PrimaryContainer>
-        <Input
-          onChange={handleInputChange.bind(this, "exercise-name")}
-          type="menu"
-          placeholder={"exercise name"}
-          value={inputExerciseName}
-        ></Input>{" "}
-        <Input
-          onChange={handleInputChange.bind(this, "series")}
-          type="number"
-          placeholder={"series"}
-          value={inputSeries}
-        />
-        {/* ================================================== */}
-        {inputSeries === "4" ||
-        inputSeries === "3" ||
-        inputSeries === "2" ||
-        inputSeries === "1" ? (
-          <InputContainer>
-            <P>1st</P>
+      {currentWorkoutsList}
+      <Container>
+        <Top>
+          <PrimaryContainer>
             <Input
-              onChange={handleInputChange.bind(this, "repetitions1")}
-              type="number"
-              placeholder={"repetitions"}
-              value={inputRepetitions1}
-            />
+              onChange={handleInputChange.bind(this, "exercise-name")}
+              type="menu"
+              placeholder={"exercise name"}
+              value={inputExerciseName}
+            ></Input>{" "}
             <Input
-              onChange={handleInputChange.bind(this, "weight1")}
+              onChange={handleInputChange.bind(this, "series")}
               type="number"
-              placeholder={"weight"}
-              value={inputWeight1}
+              placeholder={"series"}
+              value={inputSeries}
             />
-          </InputContainer>
-        ) : null}
-        {/* ================================================== */}
-        {inputSeries === "4" || inputSeries === "3" || inputSeries === "2" ? (
-          <InputContainer>
-            <P>2nd</P>
-            <Input
-              onChange={handleInputChange.bind(this, "repetitions2")}
-              type="number"
-              placeholder={"repetitions"}
-              value={inputRepetitions2}
-            />
-            <Input
-              onChange={handleInputChange.bind(this, "weight2")}
-              type="number"
-              placeholder={"weight"}
-              value={inputWeight2}
-            />
-          </InputContainer>
-        ) : null}
-        {/* ================================================== */}
-        {inputSeries === "4" || inputSeries === "3" ? (
-          <InputContainer>
-            <P>3rd</P>
-            <Input
-              onChange={handleInputChange.bind(this, "repetitions3")}
-              type="number"
-              placeholder={"repetitions"}
-              value={inputRepetitions3}
-            />
-            <Input
-              onChange={handleInputChange.bind(this, "weight3")}
-              type="number"
-              placeholder={"weight"}
-              value={inputWeight3}
-            />
-          </InputContainer>
-        ) : null}
-        {/* ================================================== */}
-        {inputSeries === "4" ? (
-          <InputContainer>
-            <P>4th</P>
-            <Input
-              onChange={handleInputChange.bind(this, "repetitions4")}
-              type="number"
-              placeholder={"repetitions"}
-              value={inputRepetitions4}
-            />
-            <Input
-              onChange={handleInputChange.bind(this, "weight4")}
-              type="number"
-              placeholder={"weight"}
-              value={inputWeight4}
-            />
-          </InputContainer>
-        ) : null}
-        <ButtonContainer>
-          <Button onClick={handleSetExercise}>Set Exercise</Button>
-          <Button onClick={handleSetTraining}>Set Training</Button>
-        </ButtonContainer>
-      </PrimaryContainer>
+            {/* ================================================== */}
+            {inputSeries === "4" ||
+            inputSeries === "3" ||
+            inputSeries === "2" ||
+            inputSeries === "1" ? (
+              <InputContainer>
+                <P>1st</P>
+                <Input
+                  onChange={handleInputChange.bind(this, "repetitions1")}
+                  type="number"
+                  placeholder={"repetitions"}
+                  value={inputRepetitions1}
+                />
+                <Input
+                  onChange={handleInputChange.bind(this, "weight1")}
+                  type="number"
+                  placeholder={"weight"}
+                  value={inputWeight1}
+                />
+              </InputContainer>
+            ) : null}
+            {/* ================================================== */}
+            {inputSeries === "4" ||
+            inputSeries === "3" ||
+            inputSeries === "2" ? (
+              <InputContainer>
+                <P>2nd</P>
+                <Input
+                  onChange={handleInputChange.bind(this, "repetitions2")}
+                  type="number"
+                  placeholder={"repetitions"}
+                  value={inputRepetitions2}
+                />
+                <Input
+                  onChange={handleInputChange.bind(this, "weight2")}
+                  type="number"
+                  placeholder={"weight"}
+                  value={inputWeight2}
+                />
+              </InputContainer>
+            ) : null}
+            {/* ================================================== */}
+            {inputSeries === "4" || inputSeries === "3" ? (
+              <InputContainer>
+                <P>3rd</P>
+                <Input
+                  onChange={handleInputChange.bind(this, "repetitions3")}
+                  type="number"
+                  placeholder={"repetitions"}
+                  value={inputRepetitions3}
+                />
+                <Input
+                  onChange={handleInputChange.bind(this, "weight3")}
+                  type="number"
+                  placeholder={"weight"}
+                  value={inputWeight3}
+                />
+              </InputContainer>
+            ) : null}
+            {/* ================================================== */}
+            {inputSeries === "4" ? (
+              <InputContainer>
+                <P>4th</P>
+                <Input
+                  onChange={handleInputChange.bind(this, "repetitions4")}
+                  type="number"
+                  placeholder={"repetitions"}
+                  value={inputRepetitions4}
+                />
+                <Input
+                  onChange={handleInputChange.bind(this, "weight4")}
+                  type="number"
+                  placeholder={"weight"}
+                  value={inputWeight4}
+                />
+              </InputContainer>
+            ) : null}
+          </PrimaryContainer>
+          <ButtonContainer>
+            <Button onClick={handleSetExercise}>Set Exercise</Button>
+            <Button onClick={handleSetTraining}>Set Training</Button>
+          </ButtonContainer>
+        </Top>{" "}
+      </Container>
     </MainContainer>
   );
 };

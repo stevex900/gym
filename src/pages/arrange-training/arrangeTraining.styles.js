@@ -1,19 +1,43 @@
 import styled from "styled-components";
 
-export const MainContainer = styled.div`
+export const ExerciseData = styled.div`
+  min-width: 130px;
+  max-width: 130px;
+  /* background-color: blue; */
+`;
+export const ExerciseName = styled.div`
+  min-width: 80px;
+  max-width: 80px;
   /* background-color: red; */
 `;
-export const PrimaryContainer = styled.div`
+export const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+`;
+export const Top = styled.div`
+  position: absolute;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 290px;
-  /* background-color: red; */
+`;
+export const Container = styled.div`
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+`;
+export const PrimaryContainer = styled.div``;
+export const ExerciseDataItem = styled.div`
+  margin-left: 18px;
+`;
+export const ExerciseDataItemContainer = styled.div`
+  display: flex;
 `;
 export const SecondaryContainer = styled.div``;
-export const TertiaryContainer = styled.div`
+
+export const WorkoutContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  border-bottom: 1px solid lightgrey;
 `;
 export const InputContainer = styled.div``;
 export const QuinaryContainer = styled.div`
@@ -33,9 +57,9 @@ export const Input = styled.input`
 `;
 export const Textarea = styled.textarea``;
 export const ButtonContainer = styled.div`
-  position: absolute;
+  /* position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
   /* bottom: 50px; */
   display: flex;
 `;
