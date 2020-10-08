@@ -1,6 +1,42 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
+export const ExerciseName = styled.div``;
+export const ExerciseData = styled.div``;
 export const MainContainer = styled.div``;
+export const ExerciseDataItemContainer = styled.div`
+  display: flex;
+`;
+
+export const ExerciseDataMyWeight = styled.div`
+  margin-left: 7px;
+  color: black;
+
+  ${({ color }) =>
+    color === "red"
+      ? css`
+          color: red;
+        `
+      : css`
+          color: green;
+        `}
+`;
+export const ExerciseDataMyRep = styled.div`
+  margin-left: 7px;
+  color: black;
+
+  ${({ color }) =>
+    color === "red"
+      ? css`
+          color: red;
+        `
+      : css`
+          color: green;
+        `}
+`;
+export const ExerciseDataItem = styled.div`
+  margin-left: 7px;
+  color: black;
+`;
 
 export const PrimaryContainer = styled.div``;
 export const SecondaryContainer = styled.div``;
@@ -10,9 +46,7 @@ export const TertiaryContainer = styled.div`
   /* margin-bottom: 6px; */
   border-bottom: 1px solid lightgrey;
 `;
-export const QuinaryContainer = styled.div`
-  margin-left: 7px;
-`;
+export const QuinaryContainer = styled.div``;
 export const ButtonContainer = styled.div`
   position: absolute;
   left: 50%;
@@ -51,8 +85,8 @@ export const P = styled.p``;
 export const Input = styled.input`
   background-color: #e9e9e9;
   height: 25px;
-  width: 54px;
-  /* margin-bottom: 10px; */
+  width: 34px;
+  margin-left: 5px;
   border: none;
   &:focus {
     outline: none;
