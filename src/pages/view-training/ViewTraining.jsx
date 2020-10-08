@@ -48,6 +48,9 @@ const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
       .map((item) => item.exercise.filter((item) => item.series !== series));
 
     console.log("pojedynczy obiekt", updateWorkout);
+    let restWorkout = viewCurrentWorkouts.filter((item) => item.id !== id);
+
+    const newWorkout = [...restWorkout, updateWorkout]; //taki pomysl zeby polaczyc tablice z drugiego cwiczenia z tym wyfiltrowanym. W rezultacie zniknie tylko to klikniete
 
     const myScore = [
       {
