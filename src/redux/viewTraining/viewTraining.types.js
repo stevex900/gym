@@ -1,3 +1,4 @@
 export const ViewActionTypes = {
   FINISH_TRAINING_ACTION: "FINISH_TRAINING_ACTION",
+  PUT_MY_SCORE: "PUT_MY_SCORE",
 };
