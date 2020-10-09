@@ -41,52 +41,39 @@ const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
       return "green";
     }
   };
+
   let viewCurrentWorkouts = [...viewCurrentWorkout];
-  const handleMyScore = (id, exerciseName, series, repetitions, weight) => {
-    let updateWorkout = viewCurrentWorkouts
+
+  const handleMyScore = (id, exerciseName, series) => {
+    let remainedSeries = viewCurrentWorkouts
       .filter((item) => item.id === id)
       .map((item) => item.exercise.filter((item) => item.series !== series));
 
-    console.log("pojedynczy obiekt", updateWorkout);
-    let restWorkout = viewCurrentWorkouts.filter((item) => item.id !== id);
+    let deletedSeries = viewCurrentWorkouts
+      .filter((item) => item.id === id)
+      .map((item) => item.exercise.filter((item) => item.series === series));
 
-    const newWorkout = [...restWorkout, updateWorkout]; //taki pomysl zeby polaczyc tablice z drugiego cwiczenia z tym wyfiltrowanym. W rezultacie zniknie tylko to klikniete
+    let updatedDeletedSeries = {
+      series: deletedSeries[0][0].series,
+      repetitions: deletedSeries[0][0].repetitions,
+      weight: deletedSeries[0][0].weight,
+      myRepetitions: myScoreInputRepetitions,
+      myWeight: myScoreInputWeight,
+    };
 
-    const myScore = [
+    let remainedExercise = viewCurrentWorkouts.filter((item) => item.id !== id);
+    let combineSeries = [...remainedSeries[0], updatedDeletedSeries];
+
+    const myDoneScore = [
       {
         id: id,
         exerciseName: exerciseName,
-        exercise: updateWorkout[0],
+        exercise: combineSeries,
       },
     ];
-    // const myScore = [
-    //   {
-    //     id: id,
-    //     exerciseName: exerciseName,
-    //     exercise: [
-    //       {
-    //         series: series,
-    //         repetitions: repetitions,
-    //         weight: weight,
-    //         myRepetitions: myScoreInputRepetitions,
-    //         myWeight: myScoreInputWeight,
-    //       },
-    //     ],
-    //   },
-    // ];
-    myScoreConfirmAction(myScore);
-    console.log(
-      ",  id: ",
-      id,
-      ",  exercise name: ",
-      exerciseName,
-      ",  series: ",
-      series,
-      ",  repetitions: ",
-      repetitions,
-      ",  weight: ",
-      weight
-    );
+    const newWorkout = [...myDoneScore, ...remainedExercise];
+
+    myScoreConfirmAction(newWorkout);
   };
   const viewCurrentWorkoutsList = viewCurrentWorkouts.map((workout) => (
     <TertiaryContainer key={workout.id}>
