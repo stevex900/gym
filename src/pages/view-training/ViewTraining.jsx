@@ -111,28 +111,30 @@ const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
             >
               Confirm
             </SmallButton>
-            <ExerciseDataItemContainer>
-              <ExerciseDataMyRep
-                color={color(
-                  item.repetitions,
-                  item.weight,
-                  item.myRepetitions,
-                  item.myWeight
-                )}
-              >
-                {`${item.myRepetitions && item.myRepetitions + "x"}`}
-              </ExerciseDataMyRep>
-              <ExerciseDataMyWeight
-                color={color(
-                  item.repetitions,
-                  item.weight,
-                  item.myRepetitions,
-                  item.myWeight
-                )}
-              >
-                {`${item.myWeight && item.myWeight + "kg"}`}
-              </ExerciseDataMyWeight>
-            </ExerciseDataItemContainer>
+            {item.myRepetitions && (
+              <ExerciseDataItemContainer>
+                <ExerciseDataMyRep
+                  color={color(
+                    item.repetitions,
+                    item.weight,
+                    item.myRepetitions,
+                    item.myWeight
+                  )}
+                >
+                  {`${item.myRepetitions && item.myRepetitions + "x"}`}
+                </ExerciseDataMyRep>
+                <ExerciseDataMyWeight
+                  color={color(
+                    item.repetitions,
+                    item.weight,
+                    item.myRepetitions,
+                    item.myWeight
+                  )}
+                >
+                  {`${item.myWeight && item.myWeight + "kg"}`}
+                </ExerciseDataMyWeight>
+              </ExerciseDataItemContainer>
+            )}
           </ExerciseDataItemContainer>
         ))}
       </ExerciseData>
