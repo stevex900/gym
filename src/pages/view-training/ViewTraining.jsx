@@ -43,7 +43,9 @@ const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
   };
 
   let viewCurrentWorkouts = [...viewCurrentWorkout];
-
+  const handleFinished = () => {
+    console.log("dziala");
+  };
   const handleMyScore = (id, exerciseName, series) => {
     let remainedSeries = viewCurrentWorkouts
       .filter((item) => item.id === id)
@@ -144,7 +146,7 @@ const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
     <MainContainer>
       <PrimaryContainer>{viewCurrentWorkoutsList}</PrimaryContainer>
       <ButtonContainer>
-        <Button>Finished</Button>
+        <Button onClick={handleFinished}>Finished</Button>
       </ButtonContainer>
     </MainContainer>
   );

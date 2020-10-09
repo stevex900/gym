@@ -4,47 +4,41 @@ const INITIAL_STATE = {
   history: [
     {
       id: 1,
-      finishedWorkout: [
+      exerciseName: "Klata",
+      exercise: [
         {
-          id: 1,
-          exerciseName: "Przysiad",
-          repetitions: "12",
-          weight: "100",
+          series: 1,
+          repetitions: 2,
+          weight: 9,
+          myRepetitions: null,
+          myWeight: null,
         },
         {
-          id: 2,
-          exerciseName: "Przysiad",
-          repetitions: "12",
-          weight: "100",
-        },
-        {
-          id: 3,
-          exerciseName: "Biceps",
-          repetitions: "12",
-          weight: "100",
+          series: 2,
+          repetitions: 5,
+          weight: 3,
+          myRepetitions: null,
+          myWeight: null,
         },
       ],
     },
     {
       id: 2,
-      finishedWorkout: [
+      exerciseName: "Plecy",
+      exercise: [
         {
-          id: 1,
-          exerciseName: "Klata",
-          repetitions: "12",
-          weight: "100",
+          series: 1,
+          repetitions: 12,
+          weight: 112,
+          myRepetitions: null,
+          myWeight: null,
         },
         {
-          id: 2,
-          exerciseName: "Klata",
-          repetitions: "12",
-          weight: "100",
-        },
-        {
-          id: 3,
-          exerciseName: "Triceps",
-          repetitions: "12",
-          weight: "100",
+          series: 2,
+          repetitions: 14,
+          weight: 120,
+          myRepetitions: null,
+          myWeight: null,
         },
       ],
     },

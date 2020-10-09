@@ -212,7 +212,7 @@ const ArrangeTraining = ({
             <Input
               onChange={handleInputChange.bind(this, "series")}
               type="number"
-              placeholder={"series"}
+              placeholder={"series 1-4"}
               value={inputSeries}
             />
             {/* ================================================== */}

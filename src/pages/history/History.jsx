@@ -1,6 +1,14 @@
 import React from "react";
 import { MainContainer } from "./history.styles";
 import { connect } from "react-redux";
+import { Button } from "../../components/button/Button.styles";
+import {
+  WorkoutContainer,
+  ExerciseName,
+  ExerciseData,
+  ExerciseDataItemContainer,
+  ExerciseDataItem,
+} from "./history.styles";
 import {
   selectHistoryTrainingItem,
   selectHistoryTrainingNumber,
@@ -8,26 +16,27 @@ import {
 const History = ({ history }) => {
   const historyList = [...history];
 
-  const historyWorkout = historyList.map((item) => (
-    <div>
-      <div>{item.id}</div>
-      <div>
-        {item.finishedWorkout.map((sub) => (
-          <p>{sub.exerciseName}</p>
+  const historyWorkout = historyList.map((workout) => (
+    <WorkoutContainer key={workout.id}>
+      <ExerciseName> {workout.exerciseName}</ExerciseName>
+      <ExerciseData>
+        {workout.exercise.map((item) => (
+          <ExerciseDataItemContainer key={item.series}>
+            <ExerciseDataItem>{`${
+              item.repetitions && item.repetitions + "x"
+            }`}</ExerciseDataItem>
+            <ExerciseDataItem>
+              {" "}
+              {`${item.weight && item.weight + "kg"}`}
+            </ExerciseDataItem>
+          </ExerciseDataItemContainer>
         ))}
-      </div>
-    </div>
+      </ExerciseData>
+      <Button>Remove</Button>
+    </WorkoutContainer>
   ));
 
-  const handleTest = () => {
-    console.log(historyList);
-  };
-  return (
-    <MainContainer>
-      <div onClick={handleTest}>sss</div>
-      {historyWorkout}
-    </MainContainer>
-  );
+  return <MainContainer>{historyWorkout}</MainContainer>;
 };
 const mapStateToProps = (state) => ({
   history: selectHistoryTrainingItem(state),

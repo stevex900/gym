@@ -12,7 +12,7 @@ import History from "./pages/history/History";
 import Start from "./pages/start/Start";
 import ViewTraining from "./pages/view-training/ViewTraining";
 import "./App.css";
-import Stopwatch from "./components/stopwatch/Stopwatch.jsx";
+
 const App = () => {
   return (
     <>
