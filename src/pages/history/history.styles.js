@@ -1,8 +1,17 @@
 import styled from "styled-components";
 
+export const ComparisonContainer = styled.div`
+  display: flex;
+`;
+export const HistoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid lightgrey;
+`;
 export const ExerciseData = styled.div`
   min-width: 130px;
   max-width: 130px;
+  border-bottom: 1px solid lightgrey;
   /* background-color: blue; */
 `;
 export const ExerciseName = styled.div`
@@ -35,8 +44,10 @@ export const ExerciseDataItemContainer = styled.div`
 `;
 export const SecondaryContainer = styled.div``;
 
+export const WorkoutTimeContainer = styled.div``;
 export const WorkoutContainer = styled.div`
   display: flex;
+  flex-direction: column;
   border-bottom: 1px solid lightgrey;
 `;
 export const InputContainer = styled.div``;

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { myScoreConfirmAction } from "../../redux/viewTraining/viewTraining.actions";
+import {
+  myScoreConfirmAction,
+  finishTrainingAction,
+} from "../../redux/viewTraining/viewTraining.actions";
 import { selectViewTrainingCurrentWorkout } from "../../redux/viewTraining/viewTraining.selector";
 import {
   MainContainer,
@@ -20,7 +23,12 @@ import {
   ExerciseDataItemContainer,
   ExerciseDataItem,
 } from "./viewTraining.styles";
-const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
+const ViewTraining = ({
+  viewCurrentWorkout,
+  number,
+  myScoreConfirmAction,
+  finishTrainingAction,
+}) => {
   const [myScoreInputRepetitions, setMyScoreInputRepetitions] = useState("");
   const [myScoreInputWeight, setMyScoreInputWeight] = useState("");
   const [myScoreInputSeries, setMyScoreInputSeries] = useState("");
@@ -43,9 +51,7 @@ const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
   };
 
   let viewCurrentWorkouts = [...viewCurrentWorkout];
-  const handleFinished = () => {
-    console.log("dziala");
-  };
+
   const handleMyScore = (id, exerciseName, series) => {
     let remainedSeries = viewCurrentWorkouts
       .filter((item) => item.id === id)
@@ -76,7 +82,28 @@ const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
     const newWorkout = [...myDoneScore, ...remainedExercise];
 
     myScoreConfirmAction(newWorkout);
+    setMyScoreInputRepetitions("");
+    setMyScoreInputWeight("");
   };
+  const handleFinished = () => {
+    const time = new Date();
+    const currentTime = String(
+      `${
+        time.getDay() < 10 ? "0" + time.getDay() : time.getDay()
+      }-${time.getUTCDate()}-${time.getUTCFullYear()}`
+    );
+    const updateHistory = {
+      id: 3,
+      date: currentTime,
+      history: viewCurrentWorkouts,
+    };
+
+    const viewCurrentWorkout = [];
+
+    finishTrainingAction(updateHistory);
+    myScoreConfirmAction(viewCurrentWorkout);
+  };
+
   const viewCurrentWorkoutsList = viewCurrentWorkouts.map((workout) => (
     <TertiaryContainer key={workout.id}>
       <ExerciseName> {workout.exerciseName}</ExerciseName>
@@ -90,14 +117,16 @@ const ViewTraining = ({ viewCurrentWorkout, number, myScoreConfirmAction }) => {
             <ExerciseDataItem>
               {`${item.weight && item.weight + "kg"}`}{" "}
               <Input
-                onChange={handleInputChange.bind(this, "repetitions")}
+                onChange={handleInputChange.bind(this, "repetitions")} // przekazac zamiast "repetitions", obiekt a wnim id i serie
                 type="number"
                 placeholder="My x"
+                value={myScoreInputRepetitions}
               />
               <Input
-                onChange={handleInputChange.bind(this, "weight")}
+                onChange={handleInputChange.bind(this, "weight")} // przekazac zamiast "repetitions", obiekt a wnim id i serie
                 type="number"
                 placeholder="My kg"
+                value={myScoreInputWeight}
               />
             </ExerciseDataItem>
             <SmallButton
@@ -156,5 +185,6 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   myScoreConfirmAction: (item) => dispatch(myScoreConfirmAction(item)),
+  finishTrainingAction: (item) => dispatch(finishTrainingAction(item)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ViewTraining);

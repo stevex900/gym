@@ -7,3 +7,7 @@ export const myScoreConfirmAction = (item) => ({
   type: ViewActionTypes.PUT_MY_SCORE,
   payload: item,
 });
+export const finishTrainingAction = (item) => ({
+  type: ViewActionTypes.FINISH_TRAINING,
+  payload: item,
+});
