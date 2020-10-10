@@ -3,10 +3,10 @@ export const selectHistoryTraining = (state) => state.historyTraining;
 
 export const selectHistoryTrainingItem = createSelector(
   [selectHistoryTraining],
-  (viewTraining) => viewTraining.history
+  (historyTraining) => historyTraining.allTrainingsHistory
 );
 
 export const selectHistoryTrainingNumber = createSelector(
   [selectHistoryTraining],
-  (viewTraining) => viewTraining.number
+  (historyTraining) => historyTraining.number
 );
