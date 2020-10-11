@@ -172,6 +172,7 @@ const ArrangeTraining = ({
     } else {
       alert("Enter a name for the exercise");
     }
+    
   };
   const currentWorkouts = [...currentWorkout];
   const currentWorkoutsList = currentWorkouts.map((workout) => (
@@ -195,7 +196,7 @@ const ArrangeTraining = ({
   ));
   const handleSetTraining = () => {
     setTrainingAction(currentWorkouts);
-    // console.log(currentWorkouts);
+    alert("New workout has been created and added")
   };
   return (
     <MainContainer>

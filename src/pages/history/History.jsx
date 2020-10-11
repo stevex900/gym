@@ -61,25 +61,7 @@ const History = ({ allTrainingsHistory }) => {
         ))}
       </WorkoutContainer>
     </HistoryContainer>
-
-    // <WorkoutContainer key={workout.id}>
-    //   <ExerciseName> {workout.exerciseName}</ExerciseName>
-    //   <ExerciseData>
-    //     {workout.exercise.map((item) => (
-    //       <ExerciseDataItemContainer key={item.series}>
-    //         <ExerciseDataItem>{`${
-    //           item.repetitions && item.repetitions + "x"
-    //         }`}</ExerciseDataItem>
-    //         <ExerciseDataItem>
-    //           {" "}
-    //           {`${item.weight && item.weight + "kg"}`}
-    //         </ExerciseDataItem>
-    //       </ExerciseDataItemContainer>
-    //     ))}
-    //   </ExerciseData>
-    //   <Button>Remove</Button>
-    // </WorkoutContainer>
-  ));
+   ));
 
   return <MainContainer>{historyWorkout}</MainContainer>;
 };

@@ -23,17 +23,19 @@ import {
   ExerciseDataItemContainer,
   ExerciseDataItem,
 } from "./viewTraining.styles";
+import {finishExerciseAction} from "../../redux/arrangeTraining/arrangeTraining.actions"
 const ViewTraining = ({
   viewCurrentWorkout,
   number,
   myScoreConfirmAction,
   finishTrainingAction,
+  finishExerciseAction
 }) => {
   const [myScoreInputRepetitions, setMyScoreInputRepetitions] = useState("");
   const [myScoreInputWeight, setMyScoreInputWeight] = useState("");
   const [myScoreInputSeries, setMyScoreInputSeries] = useState("");
   const handleInputChange = (bindValue, e) => {
-    if (bindValue === "repetitions") {
+    if (bindValue==="repetitions") {
       setMyScoreInputRepetitions(e.target.value);
     } else if (bindValue === "weight") {
       setMyScoreInputWeight(e.target.value);
@@ -102,14 +104,16 @@ const ViewTraining = ({
 
     finishTrainingAction(updateHistory);
     myScoreConfirmAction(viewCurrentWorkout);
+    finishExerciseAction(viewCurrentWorkout)
+    alert("Training has been finished. The workout creator and the current workout have been reset. Training saved in the archive")
+
   };
 
   const viewCurrentWorkoutsList = viewCurrentWorkouts.map((workout) => (
     <TertiaryContainer key={workout.id}>
       <ExerciseName> {workout.exerciseName}</ExerciseName>
       <ExerciseData>
-        {" "}
-        {workout.exercise.map((item) => (
+              {workout.exercise.map((item) => (
           <ExerciseDataItemContainer key={item.series}>
             <ExerciseDataItem>
               {`${item.repetitions && item.repetitions + "x"}`}
@@ -123,7 +127,7 @@ const ViewTraining = ({
                 value={myScoreInputRepetitions}
               />
               <Input
-                onChange={handleInputChange.bind(this, "weight")} // przekazac zamiast "repetitions", obiekt a wnim id i serie
+                onChange={handleInputChange.bind(this,"weight")} // przekazac zamiast "repetitions", obiekt a wnim id i serie
                 type="number"
                 placeholder="My kg"
                 value={myScoreInputWeight}
@@ -186,5 +190,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   myScoreConfirmAction: (item) => dispatch(myScoreConfirmAction(item)),
   finishTrainingAction: (item) => dispatch(finishTrainingAction(item)),
+  finishExerciseAction:(item)=>dispatch(finishExerciseAction(item))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ViewTraining);

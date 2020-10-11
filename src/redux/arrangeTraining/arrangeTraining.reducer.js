@@ -28,6 +28,11 @@ export const arrangeTrainingReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentWorkout: [...state.currentWorkout, action.payload],
       };
+    case ActionTypes.FINISH_EXERCISE_ACTION:
+      return {
+        ...state,
+        currentWorkout:  action.payload,
+      };
     case ActionTypes.SET_TRAINING_ACTION:
       return { ...state };
     case ActionTypes.NUMBER_CHANGE:
