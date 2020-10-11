@@ -2,22 +2,22 @@ import { ActionTypes } from "./arrangeTraining.types";
 const INITIAL_STATE = {
   number: 8,
   currentWorkout: [
-    {
-      id: 1,
-      exerciseName: "Klata",
-      exercise: [
-        {
-          series: 1,
-          repetitions: 11,
-          weight: 150,
-        },
-        {
-          series: 2,
-          repetitions: 14,
-          weight: 120,
-        },
-      ],
-    },
+    // {
+    //   id: 1,
+    //   exerciseName: "Klata",
+    //   exercise: [
+    //     {
+    //       series: 1,
+    //       repetitions: 11,
+    //       weight: 150,
+    //     },
+    //     {
+    //       series: 2,
+    //       repetitions: 14,
+    //       weight: 120,
+    //     },
+    //   ],
+    // },
   ],
 };
 
@@ -31,7 +31,7 @@ export const arrangeTrainingReducer = (state = INITIAL_STATE, action) => {
     case ActionTypes.FINISH_EXERCISE_ACTION:
       return {
         ...state,
-        currentWorkout:  action.payload,
+        currentWorkout: action.payload,
       };
     case ActionTypes.SET_TRAINING_ACTION:
       return { ...state };

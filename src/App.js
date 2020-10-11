@@ -23,8 +23,8 @@ const App = () => {
         <SecondaryContainer>
           <Route path="/" component={Start} exact={true} />
           <Route path="/arrangetraining" component={ArrangeTraining} />
-          <Route path="/history" component={History} />
           <Route path="/viewtraining" component={ViewTraining} />
+          <Route path="/history" component={History} />
         </SecondaryContainer>
       </MainContainer>
     </>

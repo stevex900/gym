@@ -83,9 +83,10 @@ export const Button = styled.button`
 `;
 export const P = styled.p``;
 export const Input = styled.input`
+  /* position:fixed; */
   background-color: #e9e9e9;
   height: 25px;
-  width: 34px;
+  width: 110px;
   margin-left: 5px;
   border: none;
   &:focus {

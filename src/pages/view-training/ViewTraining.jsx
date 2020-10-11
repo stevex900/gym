@@ -23,39 +23,33 @@ import {
   ExerciseDataItemContainer,
   ExerciseDataItem,
 } from "./viewTraining.styles";
-import {finishExerciseAction} from "../../redux/arrangeTraining/arrangeTraining.actions"
+import { finishExerciseAction } from "../../redux/arrangeTraining/arrangeTraining.actions";
 const ViewTraining = ({
   viewCurrentWorkout,
   number,
   myScoreConfirmAction,
   finishTrainingAction,
-  finishExerciseAction
+  finishExerciseAction,
 }) => {
-  
   // const [myScoreInputRepetitions, setMyScoreInputRepetitions] = useState([{name:'', value:""}]);
   // const [myScoreInputWeight, setMyScoreInputWeight] = useState([{name:'', value:""}]);
-  const [myScoreInputRepetitions, setMyScoreInputRepetitions] = useState('');
-  const [myScoreInputWeight, setMyScoreInputWeight] = useState('');
+  const [myScoreInputRepetitions, setMyScoreInputRepetitions] = useState("");
+  const [myScoreInputWeight, setMyScoreInputWeight] = useState("");
   const [myScoreInputSeries, setMyScoreInputSeries] = useState("");
 
   const handleInputChange = (bindValue, e) => {
+    if (bindValue === "repetitions") {
+      setMyScoreInputRepetitions(e.target.value);
+    } else if (bindValue === "weight") {
+      setMyScoreInputWeight(e.target.value);
+    }
 
-
-
-if(bindValue === 'repetitions'){
-  setMyScoreInputRepetitions(e.target.value);
-}else if (bindValue === "weight") {
-  setMyScoreInputWeight(e.target.value);
-} 
-
-
-// const inputName = e.target.getAttribute("name")
-// if(bindValue === inputName &&bindValue.indexOf('repetitions')!==-1 ){
-//   setMyScoreInputRepetitions([{name:inputName, value:e.target.value}]);
-// }else if (bindValue === inputName && bindValue.indexOf("weight")!==-1) {
-//   setMyScoreInputWeight([{name:inputName, value:e.target.value}]);
-// } 
-
+    // const inputName = e.target.getAttribute("name")
+    // if(bindValue === inputName &&bindValue.indexOf('repetitions')!==-1 ){
+    //   setMyScoreInputRepetitions([{name:inputName, value:e.target.value}]);
+    // }else if (bindValue === inputName && bindValue.indexOf("weight")!==-1) {
+    //   setMyScoreInputWeight([{name:inputName, value:e.target.value}]);
+    // }
   };
 
   const color = (rep, weight, myRep, myWeight) => {
@@ -86,7 +80,6 @@ if(bindValue === 'repetitions'){
       // myRepetitions: myScoreInputRepetitions[0].value,
       // myWeight: myScoreInputWeight[0].value,
     };
-    
 
     let remainedExercise = viewCurrentWorkouts.filter((item) => item.id !== id);
     let combineSeries = [...remainedSeries[0], updatedDeletedSeries];
@@ -101,13 +94,13 @@ if(bindValue === 'repetitions'){
     const newWorkout = [...myDoneScore, ...remainedExercise];
 
     myScoreConfirmAction(newWorkout);
-    setMyScoreInputRepetitions('');
-    setMyScoreInputWeight('');
+    setMyScoreInputRepetitions("");
+    setMyScoreInputWeight("");
     // setMyScoreInputRepetitions([{name:'', value:''}]);
     // setMyScoreInputWeight([{name:'', value:''}]);
 
-    console.log('repetitions-after' ,myScoreInputRepetitions)
-    console.log('weight-after' ,myScoreInputWeight)
+    console.log("repetitions-after", myScoreInputRepetitions);
+    console.log("weight-after", myScoreInputWeight);
   };
 
   const handleFinished = () => {
@@ -127,24 +120,28 @@ if(bindValue === 'repetitions'){
 
     finishTrainingAction(updateHistory);
     myScoreConfirmAction(viewCurrentWorkout);
-    finishExerciseAction(viewCurrentWorkout)
-    alert("Training has been finished. The workout creator and the current workout have been reset. Training saved in the archive")
-
+    finishExerciseAction(viewCurrentWorkout);
+    alert(
+      "Training has been finished. The workout creator and the current workout have been reset. Training saved in the archive"
+    );
   };
 
-  const viewCurrentWorkoutsList = viewCurrentWorkouts.sort((a,b)=>a.id - b.id).map((workout) => (
-    <TertiaryContainer key={workout.id}>
-     
-      <ExerciseName> {workout.exerciseName}</ExerciseName>
-      <ExerciseData>
-              {workout.exercise.sort((a,b)=>a.series - b.series).map((item) => (
-          <ExerciseDataItemContainer key={item.series}>
-            <ExerciseDataItem>
-              {`${item.repetitions && item.repetitions + "x"}`}
-            </ExerciseDataItem>
-            <ExerciseDataItem>
-              {`${item.weight && item.weight + "kg"}`}{" "}
-              {/* <Input
+  const viewCurrentWorkoutsList = viewCurrentWorkouts
+    .sort((a, b) => a.id - b.id)
+    .map((workout) => (
+      <TertiaryContainer key={workout.id}>
+        <ExerciseName> {workout.exerciseName}</ExerciseName>
+        <ExerciseData>
+          {workout.exercise
+            .sort((a, b) => a.series - b.series)
+            .map((item) => (
+              <ExerciseDataItemContainer key={item.series}>
+                <ExerciseDataItem>
+                  {`${item.repetitions && item.repetitions + "x"}`}
+                </ExerciseDataItem>
+                <ExerciseDataItem>
+                  {`${item.weight && item.weight + "kg"}`}{" "}
+                  {/* <Input
                 name={ workout.id.toString()+ item.series.toString()+ "repetitions" }
                 onChange={handleInputChange.bind( this , workout.id.toString()+ item.series.toString()+ "repetitions" )} 
                 type="number"
@@ -158,67 +155,65 @@ if(bindValue === 'repetitions'){
                 placeholder="My kg"
                 value={myScoreInputWeight[0].value}
               /> */}
-            </ExerciseDataItem>
-            <SmallButton
-              onClick={() =>
-                handleMyScore(
-                  workout.id,
-                  workout.exerciseName,
-                  item.series,
-                  item.repetitions,
-                  item.weight
-                )
-              }
-            >
-              Confirm
-            </SmallButton>
-            {item.myRepetitions || item.myWeight ? (
-              <ExerciseDataItemContainer>
-                <ExerciseDataMyRep
-                  color={color(
-                    item.repetitions,
-                    item.weight,
-                    item.myRepetitions,
-                    item.myWeight
-                  )}
+                </ExerciseDataItem>
+                <SmallButton
+                  onClick={() =>
+                    handleMyScore(
+                      workout.id,
+                      workout.exerciseName,
+                      item.series,
+                      item.repetitions,
+                      item.weight
+                    )
+                  }
                 >
-                  {`${item.myRepetitions && item.myRepetitions + "x"}`}
-                </ExerciseDataMyRep>
-                <ExerciseDataMyWeight
-                  color={color(
-                    item.repetitions,
-                    item.weight,
-                    item.myRepetitions,
-                    item.myWeight
-                  )}
-                >
-                  {`${item.myWeight && item.myWeight + "kg"}`}
-                </ExerciseDataMyWeight>
+                  Confirm
+                </SmallButton>
+                {item.myRepetitions || item.myWeight ? (
+                  <ExerciseDataItemContainer>
+                    <ExerciseDataMyRep
+                      color={color(
+                        item.repetitions,
+                        item.weight,
+                        item.myRepetitions,
+                        item.myWeight
+                      )}
+                    >
+                      {`${item.myRepetitions && item.myRepetitions + "x"}`}
+                    </ExerciseDataMyRep>
+                    <ExerciseDataMyWeight
+                      color={color(
+                        item.repetitions,
+                        item.weight,
+                        item.myRepetitions,
+                        item.myWeight
+                      )}
+                    >
+                      {`${item.myWeight && item.myWeight + "kg"}`}
+                    </ExerciseDataMyWeight>
+                  </ExerciseDataItemContainer>
+                ) : null}
               </ExerciseDataItemContainer>
-            ) : null}
-          </ExerciseDataItemContainer>
-        ))}
-      </ExerciseData>
-    </TertiaryContainer>
-  ));
+            ))}
+        </ExerciseData>
+      </TertiaryContainer>
+    ));
   return (
     <MainContainer>
-       <Input
-               
-               onChange={handleInputChange.bind( this ,"repetitions" )} 
-               type="number"
-               placeholder="My x"
-               value={myScoreInputRepetitions}
-              //  value={myScoreInputRepetitions[0].value}
-             />
-             <Input
-               
-               onChange={handleInputChange.bind(this,"weight")} 
-               type="number"
-               placeholder="My kg"
-               value={myScoreInputWeight}
-              //  value={myScoreInputWeight[0].value}
-             />
+      <Input
+        onChange={handleInputChange.bind(this, "repetitions")}
+        type="number"
+        placeholder="My Repetitions (X)"
+        value={myScoreInputRepetitions}
+        //  value={myScoreInputRepetitions[0].value}
+      />
+      <Input
+        onChange={handleInputChange.bind(this, "weight")}
+        type="number"
+        placeholder="My Burden (KG)"
+        value={myScoreInputWeight}
+        //  value={myScoreInputWeight[0].value}
+      />
       <PrimaryContainer>{viewCurrentWorkoutsList}</PrimaryContainer>
       <ButtonContainer>
         <Button onClick={handleFinished}>Finished</Button>
@@ -232,6 +227,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   myScoreConfirmAction: (item) => dispatch(myScoreConfirmAction(item)),
   finishTrainingAction: (item) => dispatch(finishTrainingAction(item)),
-  finishExerciseAction:(item)=>dispatch(finishExerciseAction(item))
+  finishExerciseAction: (item) => dispatch(finishExerciseAction(item)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ViewTraining);
