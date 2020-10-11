@@ -31,17 +31,31 @@ const ViewTraining = ({
   finishTrainingAction,
   finishExerciseAction
 }) => {
-  const [myScoreInputRepetitions, setMyScoreInputRepetitions] = useState("");
-  const [myScoreInputWeight, setMyScoreInputWeight] = useState("");
+  
+  // const [myScoreInputRepetitions, setMyScoreInputRepetitions] = useState([{name:'', value:""}]);
+  // const [myScoreInputWeight, setMyScoreInputWeight] = useState([{name:'', value:""}]);
+  const [myScoreInputRepetitions, setMyScoreInputRepetitions] = useState('');
+  const [myScoreInputWeight, setMyScoreInputWeight] = useState('');
   const [myScoreInputSeries, setMyScoreInputSeries] = useState("");
+
   const handleInputChange = (bindValue, e) => {
-    if (bindValue==="repetitions") {
-      setMyScoreInputRepetitions(e.target.value);
-    } else if (bindValue === "weight") {
-      setMyScoreInputWeight(e.target.value);
-    } else if (bindValue === "series") {
-      setMyScoreInputSeries(e.target.value);
-    }
+
+
+
+if(bindValue === 'repetitions'){
+  setMyScoreInputRepetitions(e.target.value);
+}else if (bindValue === "weight") {
+  setMyScoreInputWeight(e.target.value);
+} 
+
+
+// const inputName = e.target.getAttribute("name")
+// if(bindValue === inputName &&bindValue.indexOf('repetitions')!==-1 ){
+//   setMyScoreInputRepetitions([{name:inputName, value:e.target.value}]);
+// }else if (bindValue === inputName && bindValue.indexOf("weight")!==-1) {
+//   setMyScoreInputWeight([{name:inputName, value:e.target.value}]);
+// } 
+
   };
 
   const color = (rep, weight, myRep, myWeight) => {
@@ -69,7 +83,10 @@ const ViewTraining = ({
       weight: deletedSeries[0][0].weight,
       myRepetitions: myScoreInputRepetitions,
       myWeight: myScoreInputWeight,
+      // myRepetitions: myScoreInputRepetitions[0].value,
+      // myWeight: myScoreInputWeight[0].value,
     };
+    
 
     let remainedExercise = viewCurrentWorkouts.filter((item) => item.id !== id);
     let combineSeries = [...remainedSeries[0], updatedDeletedSeries];
@@ -84,9 +101,15 @@ const ViewTraining = ({
     const newWorkout = [...myDoneScore, ...remainedExercise];
 
     myScoreConfirmAction(newWorkout);
-    setMyScoreInputRepetitions("");
-    setMyScoreInputWeight("");
+    setMyScoreInputRepetitions('');
+    setMyScoreInputWeight('');
+    // setMyScoreInputRepetitions([{name:'', value:''}]);
+    // setMyScoreInputWeight([{name:'', value:''}]);
+
+    console.log('repetitions-after' ,myScoreInputRepetitions)
+    console.log('weight-after' ,myScoreInputWeight)
   };
+
   const handleFinished = () => {
     const time = new Date();
     const currentTime = String(
@@ -111,6 +134,7 @@ const ViewTraining = ({
 
   const viewCurrentWorkoutsList = viewCurrentWorkouts.map((workout) => (
     <TertiaryContainer key={workout.id}>
+     
       <ExerciseName> {workout.exerciseName}</ExerciseName>
       <ExerciseData>
               {workout.exercise.map((item) => (
@@ -120,18 +144,20 @@ const ViewTraining = ({
             </ExerciseDataItem>
             <ExerciseDataItem>
               {`${item.weight && item.weight + "kg"}`}{" "}
-              <Input
-                onChange={handleInputChange.bind(this, "repetitions")} // przekazac zamiast "repetitions", obiekt a wnim id i serie
+              {/* <Input
+                name={ workout.id.toString()+ item.series.toString()+ "repetitions" }
+                onChange={handleInputChange.bind( this , workout.id.toString()+ item.series.toString()+ "repetitions" )} 
                 type="number"
                 placeholder="My x"
-                value={myScoreInputRepetitions}
+                value={myScoreInputRepetitions[0].value}
               />
               <Input
-                onChange={handleInputChange.bind(this,"weight")} // przekazac zamiast "repetitions", obiekt a wnim id i serie
+                 name={ workout.id.toString()+ item.series.toString()+ "weight" }
+                onChange={handleInputChange.bind(this,workout.id.toString()+ item.series.toString()+ "weight")} 
                 type="number"
                 placeholder="My kg"
-                value={myScoreInputWeight}
-              />
+                value={myScoreInputWeight[0].value}
+              /> */}
             </ExerciseDataItem>
             <SmallButton
               onClick={() =>
@@ -177,6 +203,22 @@ const ViewTraining = ({
   ));
   return (
     <MainContainer>
+       <Input
+               
+               onChange={handleInputChange.bind( this ,"repetitions" )} 
+               type="number"
+               placeholder="My x"
+               value={myScoreInputRepetitions}
+              //  value={myScoreInputRepetitions[0].value}
+             />
+             <Input
+               
+               onChange={handleInputChange.bind(this,"weight")} 
+               type="number"
+               placeholder="My kg"
+               value={myScoreInputWeight}
+              //  value={myScoreInputWeight[0].value}
+             />
       <PrimaryContainer>{viewCurrentWorkoutsList}</PrimaryContainer>
       <ButtonContainer>
         <Button onClick={handleFinished}>Finished</Button>
