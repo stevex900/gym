@@ -132,12 +132,12 @@ if(bindValue === 'repetitions'){
 
   };
 
-  const viewCurrentWorkoutsList = viewCurrentWorkouts.map((workout) => (
+  const viewCurrentWorkoutsList = viewCurrentWorkouts.sort((a,b)=>a.id - b.id).map((workout) => (
     <TertiaryContainer key={workout.id}>
      
       <ExerciseName> {workout.exerciseName}</ExerciseName>
       <ExerciseData>
-              {workout.exercise.map((item) => (
+              {workout.exercise.sort((a,b)=>a.series - b.series).map((item) => (
           <ExerciseDataItemContainer key={item.series}>
             <ExerciseDataItem>
               {`${item.repetitions && item.repetitions + "x"}`}
