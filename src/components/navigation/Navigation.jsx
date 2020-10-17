@@ -1,4 +1,4 @@
-import { Nav } from "./navigation.styles";
+import { Nav, LogInContainer } from "./navigation.styles";
 import { ReactComponent as Hamburger } from "../../assets/hamburgerS.svg";
 import Menu from "../menu/Menu";
 import React from "react";

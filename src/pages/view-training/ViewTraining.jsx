@@ -104,12 +104,10 @@ const ViewTraining = ({
   };
 
   const handleFinished = () => {
-    const time = new Date();
-    const currentTime = String(
-      `${
-        time.getDay() < 10 ? "0" + time.getDay() : time.getDay()
-      }-${time.getUTCDate()}-${time.getUTCFullYear()}`
-    );
+    const time = new Date().toLocaleDateString();
+
+    const currentTime = time;
+
     const updateHistory = {
       id: 3,
       date: currentTime,

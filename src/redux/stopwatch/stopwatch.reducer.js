@@ -19,7 +19,6 @@ export const stopwatchReducer = (state = INITIAL_STATE, action) => {
       return { ...state, workoutSeconds: action.payload };
     case ActionTypes.REST_SECONDS_CHANGE:
       return { ...state, restSeconds: action.payload };
-
     case ActionTypes.SERIES_MINUTES_CHANGE:
       return { ...state, seriesMinutes: action.payload };
     case ActionTypes.WORKOUT_MINUTES_CHANGE:
