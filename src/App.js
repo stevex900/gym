@@ -13,7 +13,7 @@ import Start from "./pages/start/Start";
 import ViewTraining from "./pages/view-training/ViewTraining";
 import LogIn from "./components/log-in/LogIn";
 import "./App.css";
-import { auth } from "./firebase/firebase";
+import { auth, createUserProfileDocument } from "./firebase/firebase";
 
 // const App = () => {
 //   const [currentUser, setCurrentUser] = useState();
@@ -59,10 +59,9 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-
-      console.log(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      // this.setState({ currentUser: user });
+      createUserProfileDocument(user);
     });
   }
 
