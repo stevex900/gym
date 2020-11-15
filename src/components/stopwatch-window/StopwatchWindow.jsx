@@ -55,6 +55,7 @@ const StopwatchWindow = ({
       } else if (workoutSeconds === 0) {
         workoutChangeValueActionMinutes(--workoutMinutes);
         workoutChangeValueAction((workoutSeconds = 59));
+        
       }
     } else if (bindValue === "workout-add") {
       if (workoutSeconds < 59) {
